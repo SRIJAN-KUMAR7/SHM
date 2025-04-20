@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Self-Healing Bio Skin Toolkit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='prosthetic_skin.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color:#5d6d7e;
+            padding: 30px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 8px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        img {
+            margin: 10px 0;
+            max-width: 100%;
+            border-radius: 10px;
+            border: 2px solid #fff;
+        }
+        .graphs {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Self-Healing Bio Skin Toolkit</h2>
+
+        <h3>Minor Project: Prosthetic Bio-Skin Healing Analysis</h3>
+        <h4>By <b>Srijan Kumar</b></h4>
+        <p>Registration Number: <strong>2023UGCM016</strong></p>
+        <p>This toolkit uses ML to predict healing efficiency and peak stress based on user-input crack length and temperature.</p>
+
+        <form method="POST">
+            <label>Crack Length (mm):</label>
+            <input type="number" name="crack_length" step="0.1" required>
+
+            <label>Temperature (K):</label>
+            <input type="number" name="temperature" step="1" required>
+
+            <button type="submit"> Predict & Show Graphs</button>
+        </form>
+
+        {% if result %}
+        <hr>
+        <h3>🧪 Prediction Results:</h3>
+        <p><b>Crack Length:</b> {{ result.crack_length }} mm</p>
+        <p><b>Temperature:</b> {{ result.temperature }} K</p>
+        <p><b>Healing Efficiency:</b> {{ result.efficiency }}</p>
+        <p><b>Peak Stress:</b> {{ result.stress }} MPa</p>
+
+        <div class="graphs">
+            <h3>📈 Healing Efficiency vs Time</h3>
+            <img src="{{ url_for('static', filename='nvst.png') }}">
+
+            <h3>📈 Peak Stress vs Time</h3>
+            <img src="{{ url_for('static', filename='stressvst.png') }}">
+
+            <h3>📊 Healing Efficiency vs Crack Length and Peak Stress vs Crack Length</h3>
+            <img src="{{ url_for('static', filename='CombinedImagecoonsideringeffectoftemperatures.png') }}">
+        </div>
+
+        <hr>
+        <h3> Prosthetic Arm Example</h3>
+        <img src="{{ url_for('static', filename='prosthetic_arm.jpg') }}" alt="Prosthetic Arm">
+
+        <h3>📐 ANSYS Simulation Output</h3>
+        <img src="{{ url_for('static', filename='ansys_model.jpg') }}" alt="ANSYS Model">
+        {% endif %}
+    </div>
+</body>
+</html>
