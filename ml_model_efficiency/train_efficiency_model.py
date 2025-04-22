@@ -64,7 +64,6 @@ y_pred = model.predict(X_test)
 print("R² Score:", r2_score(y_test, y_pred))
 
 
-
 import os
 os.makedirs("models", exist_ok=True)
 joblib.dump(model, "models/efficiency_model.pkl")

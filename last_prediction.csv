@@ -1,2 +1,2 @@
-crack_length,temperature,predicted_efficiency
-3.4,333.0,0.949999999719745
+crack_length,temperature,healing_time,predicted_efficiency
+3.4,333.0,3.0,0.9499946285821805

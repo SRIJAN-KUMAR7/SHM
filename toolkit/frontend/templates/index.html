@@ -5,12 +5,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url("{{ url_for('static', filename='prosthetic_skin.jpg') }}");
+            background-image: url("{{ url_for('static', filename='background.png') }}");
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color:#5d6d7e;
+            color: #ffffff;
             padding: 30px;
+            background-color:#138d75;
+
         }
         .container {
             background: rgba(0, 0, 0, 0.75);
@@ -35,52 +37,87 @@
             margin-top: 20px;
         }
     </style>
+    <script>
+        function toggleGraphs() {
+            var g = document.getElementById("graphs");
+            var btn = document.getElementById("toggleBtn");
+        
+            if (g.style.display === "none" || g.style.display === "") {
+                g.style.display = "block";
+                btn.innerText = "🔽 Hide Graphs";
+            } else {
+                g.style.display = "none";
+                btn.innerText = "📈 Show Graphs";
+            }
+        }
+
+        function toggeleansys() {
+            var f = document.getElementById("ansys");
+            var bt = document.getElementById("tgb");
+        
+            if (f.style.display === "none" || f.style.display === "") {
+                f.style.display = "block";
+                bt.innerText = "🔽 Hide Simulation";
+            } else {
+                f.style.display = "none";
+                bt.innerText = "📈 Show Ansys Simulation Output";
+            }
+        }
+        
+        </script>
 </head>
 <body>
     <div class="container">
         <h2>Self-Healing Bio Skin Toolkit</h2>
 
-        <h3>Minor Project: Prosthetic Bio-Skin Healing Analysis</h3>
+        <h3>Minor Project: BioSkin: A Self-Healing Artificial Skin for Prosthetics</h3>
         <h4>By <b>Srijan Kumar</b></h4>
         <p>Registration Number: <strong>2023UGCM016</strong></p>
         <p>This toolkit uses ML to predict healing efficiency and peak stress based on user-input crack length and temperature.</p>
+        <h3> Prosthetic Arm</h3>
+        <img src="{{ url_for('static', filename='backkgrond.png') }}" alt="Prosthetic Arm">
 
-        <form method="POST">
-            <label>Crack Length (mm):</label>
-            <input type="number" name="crack_length" step="0.1" required>
+        <!-- Predict Button Form -->
+<form method="POST">
+    <label>Crack Length (mm):</label>
+    <input type="number" name="crack_length" step="0.1" required>
 
-            <label>Temperature (K):</label>
-            <input type="number" name="temperature" step="1" required>
+    <label>Temperature (K):</label>
+    <input type="number" name="temperature" step="1" required>
 
-            <button type="submit"> Predict & Show Graphs</button>
-        </form>
+    <button type="submit"> Predict Healing Efficiency & Stress</button>
+</form>
 
-        {% if result %}
-        <hr>
-        <h3>🧪 Prediction Results:</h3>
-        <p><b>Crack Length:</b> {{ result.crack_length }} mm</p>
-        <p><b>Temperature:</b> {{ result.temperature }} K</p>
-        <p><b>Healing Efficiency:</b> {{ result.efficiency }}</p>
-        <p><b>Peak Stress:</b> {{ result.stress }} MPa</p>
+{% if result %}
+<hr>
+<h3>🧪 Prediction Results:</h3>
+<p><b>Crack Length:</b> {{ result.crack_length }} mm</p>
+<p><b>Temperature:</b> {{ result.temperature }} K</p>
+<p><b>Healing Efficiency:</b> {{ result.efficiency }}</p>
+<p><b>Peak Stress:</b> {{ result.stress }} MPa</p>
 
-        <div class="graphs">
-            <h3>📈 Healing Efficiency vs Time</h3>
-            <img src="{{ url_for('static', filename='nvst.png') }}">
 
-            <h3>📈 Peak Stress vs Time</h3>
-            <img src="{{ url_for('static', filename='stressvst.png') }}">
+<button id="toggleBtn" onclick="toggleGraphs()">📈 Show Graphs</button>
 
-            <h3>📊 Healing Efficiency vs Crack Length and Peak Stress vs Crack Length</h3>
-            <img src="{{ url_for('static', filename='CombinedImagecoonsideringeffectoftemperatures.png') }}">
-        </div>
+<div class="graphs" id="graphs" style="display: none;">
+    <h3>Healing Efficiency vs Time</h3>
+    <img src="{{ url_for('static', filename='nvst.png') }}">
 
-        <hr>
-        <h3> Prosthetic Arm Example</h3>
-        <img src="{{ url_for('static', filename='prosthetic_arm.jpg') }}" alt="Prosthetic Arm">
+    <h3>Peak Stress vs Time</h3>
+    <img src="{{ url_for('static', filename='stressvst.png') }}">
 
-        <h3>📐 ANSYS Simulation Output</h3>
-        <img src="{{ url_for('static', filename='ansys_model.jpg') }}" alt="ANSYS Model">
-        {% endif %}
+    <h3>Healing Efficiency vs Crack Length and Peak Stress vs Crack Length</h3>
+    <img src="{{ url_for('static', filename='CombinedImagecoonsideringeffectoftemperatures.png') }}">
+</div>
+
+<hr>
+<button id="tgb" onclick="toggeleansys()">Show Ansys Simulation Output</button>
+<div class="ansys" id="ansys" style="display:none;">
+    <h3>ANSYS Simulation Output</h3>
+<img src="{{ url_for('static', filename='ansys.jpg') }}" alt="ANSYS Model">
+</div>
+{% endif %}
+
     </div>
 </body>
 </html>
