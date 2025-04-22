@@ -12,8 +12,8 @@ app = Flask(
     static_folder='../frontend/static'
 )
 
-healing_model = joblib.load('efficiency_model.pkl')
-stress_model = joblib.load('peak_stress_model.pkl')
+healing_model = joblib.load('./efficiency_model.pkl')
+stress_model = joblib.load('./peak_stress_model.pkl')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -28,8 +28,8 @@ def index():
         result = {
             'crack_length': crack_length,
             'temperature': temperature,
-            'efficiency': round(efficiency, 2),
-            'stress': round(stress, 2)
+            'efficiency': efficiency,
+            'stress': stress
         }
         with open('../last_prediction.csv', 'w') as f:
             f.write("Crack Length,Temperature,Healing Efficiency,Peak Stress\n")
