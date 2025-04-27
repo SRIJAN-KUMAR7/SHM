@@ -70,17 +70,17 @@
     <div class="container">
         <h2>Self-Healing Bio Skin Toolkit</h2>
 
-        <h3>Minor Project: BioSkin: A Self-Healing Artificial Skin for Prosthetics</h3>
+        <h3>Minor Project: BioSkin-AI: A Machine Learning-Powered Self-Healing Prosthetic Skin</h3>
         <h4>By <b>Srijan Kumar</b></h4>
         <p>Registration Number: <strong>2023UGCM016</strong></p>
         <p>This toolkit uses ML to predict healing efficiency and peak stress based on user-input crack length and temperature.</p>
         <h3> Prosthetic Arm</h3>
         <img src="{{ url_for('static', filename='backkgrond.png') }}" alt="Prosthetic Arm">
 <form method="POST">
-    <label>Crack Length Range:(0.52485 - 4.96834) (mm):</label>
+    <label>Crack Length Range:(0.52485 - 4.96834)(mm):</label>
     <input type="number" name="crack_length" step="0.1" required>
 
-    <label>Temperature (K) Range:(290.9055 - 339.98588):</label>
+    <label>Temperature Range:(290.9055 - 339.98588)(K):</label>
     <input type="number" name="temperature" step="1" required>
 
     <button type="submit"> Predict Healing Efficiency & Stress</button>
