@@ -13,7 +13,7 @@ temp = np.random.uniform(290, 340, num_samples)
 
 #some values 
 sigma_0 = 5        
-tau_0 = 2
+tau_0 = 6
 L_ref = 1
 Ea = 50000         
 R = 8.314
