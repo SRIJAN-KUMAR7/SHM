@@ -82,7 +82,8 @@
 
     <label>Temperature Range:(290.9055 - 339.98588)(K):</label>
     <input type="number" name="temperature" step="1" required>
-
+    <label for="humidity">Humidity (%RH, 10 - 95):</label>
+    <input type="number" name="humidity" step="1" required>
     <button type="submit"> Predict Healing Efficiency & Stress</button>
 </form>
 
@@ -109,11 +110,6 @@
 </div>
 
 <hr>
-<button id="tgb" onclick="toggeleansys()">Show Ansys Simulation Output</button>
-<div class="ansys" id="ansys" style="display:none;">
-    <h3>ANSYS Simulation Output</h3>
-<img src="{{ url_for('static', filename='ansys.jpg') }}" alt="ANSYS Model">
-</div>
 {% endif %}
 
     </div>

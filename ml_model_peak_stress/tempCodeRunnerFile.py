@@ -1,2 +1,1 @@
-y_pred = model.predict(X_test)
-print("R² Score on Test Set:", r2_score(y_test, y_pred))
+from django.utils.translation import ugettext_lazy as _1
